@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>Document</title>
+</head>
+<body>
+    <p>绑定Dom事件</p>
+    <div class='wrapper'>
+    </div>
+
+    <script type="text/javascript">
+        const createDOMFromString = (domString) => {
+            const div = document.createElement('div')
+            div.innerHTML = domString
+            return div
+        }
+
+        class LikeButton {
+            render(name) {
+                this.el = createDOMFromString(
+                    `
+                        <button id='like-btn'>
+                          <span class='like-text'>${name}</span>
+                          <span>👍</span>
+                        </button>
+                    `
+                );
+                this.el.addEventListener('click', ()=>{console.log('click')}, false);
+                return this.el;
+            }
+        }
+
+        const wrapper = document.querySelector('.wrapper')
+        const button1 = new LikeButton();
+        wrapper.appendChild(button1.render('点赞'));
+
+    </script>
+</body>
+</html>
